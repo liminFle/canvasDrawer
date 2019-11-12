@@ -184,8 +184,6 @@ var _default =
           background: '#fff',
           lineWidth: 6,
           strokeStyle: '#000',
-          // url: 'https://hybrid.xiaoying.tv/miniprogram/viva-ad/1/1531103986231.jpeg',
-          r: 20,
           top: 100,
           left: 100,
           width: 200,

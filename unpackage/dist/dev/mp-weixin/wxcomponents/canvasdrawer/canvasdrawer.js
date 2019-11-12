@@ -243,9 +243,7 @@ Component({
 			}
 		},
 		drawRect(params) {
-			console.log(params)
 			this.ctx.save()
-			// console.log(params)
 			const {
 				background,
 				top = 0,
@@ -253,17 +251,16 @@ Component({
 				width = 0,
 				height = 0,
 				borderRadius = 0,
-				r = 0,
 				lineWidth=0,
 				strokeStyle='#fff'
 			} = params
 			if (borderRadius) {		
 				this.ctx.beginPath();
-				this.ctx.moveTo(top + r, left);
-				this.ctx.arcTo(top + width, left, top + width, left + r, r); // draw right side and bottom right corner 
-				this.ctx.arcTo(top + width, left + height, top + width - r, left + height, r); // draw bottom and bottom left corner 
-				this.ctx.arcTo(top, left + height, left, top + height - r, r); // draw left and top left corner 
-				this.ctx.arcTo(top, left, top + r, left, r);
+				this.ctx.moveTo(top + borderRadius, left);
+				this.ctx.arcTo(top + width, left, top + width, left + borderRadius, borderRadius); // draw right side and bottom right corner 
+				this.ctx.arcTo(top + width, left + height, top + width - borderRadius, left + height, borderRadius); // draw bottom and bottom left corner 
+				this.ctx.arcTo(top, left + height, left, top + height - borderRadius, borderRadius); // draw left and top left corner 
+				this.ctx.arcTo(top, left, top + borderRadius, left, borderRadius);
 				this.ctx.fill();
 				this.ctx.save();
 				this.ctx.clip();

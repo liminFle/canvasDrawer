@@ -140,15 +140,16 @@ Component({
 
 
 				this.ctx.beginPath();
-				// this.ctx.setLineDash([]);
+				this.ctx.setLineDash([]);
 				if (lineWidth) {
 					this.ctx.lineWidth = lineWidth;
 					this.ctx.strokeStyle = strokeStyle;
 				}
 
 				this.ctx.arc(left + borderRadius, top + borderRadius, borderRadius, 0, 2 * Math.PI)
-				this.ctx.fill()
+
 				this.ctx.save();
+			// this.ctx.fill()
 				this.ctx.clip();
 				this.ctx.drawImage(url, left, top, width, height)
 				this.ctx.stroke();
@@ -251,23 +252,32 @@ Component({
 				width = 0,
 				height = 0,
 				borderRadius = 0,
-				lineWidth=0,
-				strokeStyle='#fff'
+				lineWidth = 0,
+				strokeStyle = '#fff'
 			} = params
-			if (borderRadius) {		
+			if (borderRadius) {
 				this.ctx.beginPath();
-				this.ctx.moveTo(top + borderRadius, left);
-				this.ctx.arcTo(top + width, left, top + width, left + borderRadius, borderRadius); // draw right side and bottom right corner 
-				this.ctx.arcTo(top + width, left + height, top + width - borderRadius, left + height, borderRadius); // draw bottom and bottom left corner 
-				this.ctx.arcTo(top, left + height, left, top + height - borderRadius, borderRadius); // draw left and top left corner 
-				this.ctx.arcTo(top, left, top + borderRadius, left, borderRadius);
-				this.ctx.fill();
+				// this.ctx.moveTo(top + borderRadius, left);
+				// this.ctx.arcTo(top + width, left, top + width, left + borderRadius, borderRadius); // draw right side and bottom right corner 
+				// this.ctx.arcTo(top + width, left + height, top + width - borderRadius, left + height, borderRadius); // draw bottom and bottom left corner 
+				// this.ctx.arcTo(top, left + height, left, top + height - borderRadius, borderRadius); // draw left and top left corner 
+				// this.ctx.arcTo(top, left, top + borderRadius, left, borderRadius);
+
+				this.ctx.moveTo(left + borderRadius, top);
+				this.ctx.arcTo(left + width, top, left + width, top + height, borderRadius); // draw right side and bottom right corner 
+				this.ctx.arcTo(left + width, top + height, left, top + height, borderRadius); // draw bottom and bottom left corner 
+				this.ctx.arcTo(left, top + height, left, top, borderRadius); // draw left and left left corner 
+				this.ctx.arcTo(left, top, left + width, top, borderRadius);
+			if (lineWidth) {
+					this.ctx.fill();
+				}
 				this.ctx.save();
 				this.ctx.clip();
 				this.ctx.setFillStyle(background)
 				this.ctx.fillRect(left, top, width, height)
 
 				if (lineWidth) {
+						
 					this.ctx.lineWidth = lineWidth;
 					this.ctx.strokeStyle = strokeStyle;
 					this.ctx.stroke();

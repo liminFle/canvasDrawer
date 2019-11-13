@@ -74,14 +74,14 @@ eventDraw() {
 						// },
 						{
 							type: 'image',
-							borderRadius:22.5,
+							borderRadius:75,
 							lineWidth:4,
 							strokeStyle:'#fff',
 							url: 'https://tencentcos.yuchuantech.com/up/xiaoqingtou/9ffbcaa9-47c2-445e-b831-a73fda00699c.jpeg',
 							top: 27.5,
 							left: 29,
-							width: 55,
-							height: 55
+							width: 150,
+							height: 150
 						},
 						{
 							type: 'text',
@@ -179,8 +179,37 @@ eventDraw() {
 				// if (errMsg === 'canvasdrawer:ok') {
 				console.log(tempFilePath)
 				this.shareImage = tempFilePath
-
+this.download(tempFilePath);
 				// }
+			},
+			
+			download(e) {
+				uni.downloadFile({
+					url: e,
+					success: (e) => {
+						uni.saveImageToPhotosAlbum({
+							filePath: e.tempFilePath,
+							success: () => {
+								uni.showToast({
+									icon: 'none',
+									title: '已保存到手机相册'
+								})
+							},
+							fail: () => {
+								uni.showToast({
+									icon: 'none',
+									title: '保存到手机相册失败'
+								})
+							}
+						});
+					},
+					fail: (e) => {
+						uni.showModal({
+							content: '下载失败，' + e.errMsg,
+							showCancel: false
+						})
+					}
+				})
 			},
 		}
 	}

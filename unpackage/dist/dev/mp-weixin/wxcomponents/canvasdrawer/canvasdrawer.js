@@ -152,7 +152,9 @@ Component({
 			// this.ctx.fill()
 				this.ctx.clip();
 				this.ctx.drawImage(url, left, top, width, height)
+					if (lineWidth) {
 				this.ctx.stroke();
+				}
 
 			} else {
 				this.ctx.drawImage(url, left, top, width, height)
